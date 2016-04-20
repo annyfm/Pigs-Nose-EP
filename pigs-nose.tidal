@@ -1,0 +1,264 @@
+{-
+anny fm: pig's nose ep
+-}
+
+-- still on bps atm, port to cps tomorrow like
+bps (117/60)
+
+{-
+[1]
+-}
+
+let pn'hointro = s "[~ [~ ho] ~ ho ~ ~ ho ~]/2"
+let pn'sn1 = s "[~ [~ sn:8] ~ sn:8 ~ ~ sn:8 ~]/2"
+let pn'bd1 = s "[bd:1 [~ ~ ~ bd:1] bd:1*2 ~]/2"
+
+let pn'qs1 sl = slow sl . striate 4 $ s "qspace"
+
+d2 $ slow 2.5 . striate 6 $ s "print:7"
+
+d2 $ slow 2.5 . striate 6 $ s "print:7"
+  # vowel (slow 3 "a e i")
+
+d3 $ pn'qs1 4
+d3 $ pn'qs1 2
+
+d1 $ pn'hointro
+
+d2 $ jux (slow 1.1) $ slow 2.5 . striate 6 $ sound "print:7"
+
+d3 $ jux (iter 8) $ pn'qs1 2
+
+d1 $ pn'sn1
+
+d3 $ jux (iter 8) $ pn'qs1 2
+  |+| speed ((+0.7).(/2) <$> slow 3.2 triwave1)
+
+d2 $ jux (slow 1.1) $
+  slow 2.5 . striate 6 $ sound "{print:7, wobble}"
+  |+| vowel (slow 3 "a e i")
+
+d1 $ overlay (slow 2 $ s "bd") $ pn'sn1
+
+d3 $ spread density [1,2] $
+  jux (iter 8) $ pn'qs1 2
+  |+| speed ((+0.7).(/2) <$> slow 3.2 triwave1)
+
+d1 $ overlay (pn'bd1) $ pn'sn1
+
+d2 $ jux (slow 1.1) $ slow 2.5 . striate 6 $ sound "wobble"
+
+-- angry qspace
+d3 $ spread density [1,1,2,0.5] $
+  jux (iter 8) $ pn'qs1 2
+  |+| speed ((+0.7).(/2) <$> slow 3.2 triwave1)
+
+d1 $ every 3 rev $
+  overlay (pn'bd1) $ pn'sn1
+
+d1 $ jux (iter 4) . every 3 rev $
+  overlay (pn'bd1) $ pn'sn1
+
+d1 $ every 8 (density 2) $
+  jux (iter 4) . every 3 rev $
+  overlay (pn'bd1) $ pn'sn1
+
+d1 $ jux (density 2 . iter 4) . every 3 rev $
+  overlay (pn'bd1) $ pn'sn1
+
+-- chiller qspace
+d3 $ spread density [1,1,0.5,2] $
+  jux (iter 8) $ pn'qs1 2
+  |+| speed ((+0.7).(/2) <$> slow 3.2 triwave1)
+
+d2 silence
+
+d1 $ overlay (pn'bd1) $ pn'sn1
+
+d1 $ overlay (s "[hh*8 [hh*4 ho]]/2") $
+  overlay (pn'bd1) $ pn'sn1
+
+d1 $ overlay (s "[hh*8 [hh*4 ho]]/2") $
+  every 3 rev $
+  overlay (pn'bd1) $ pn'sn1
+
+d4 $ slow 4 $ (1%32) <~ s "jungbass:2 jungbass:4"
+  |+| pan (slow 2 sinewave1)
+  |+| speed "1.2"
+
+d1 $ overlay (s "[hh*8 [hh*4 ho]]/2") $
+  jux (iter 4) . every 3 rev $
+  overlay (pn'bd1) $ pn'sn1
+
+d8 $ sound "[qlatibro:1 qlatibro]*2"
+
+d1 $ overlay (s "[hh*8 [hh*4 ho]]/2") $
+  jux (iter 4) . every 3 rev $
+  overlay (pn'bd1) $ pn'sn1
+
+d3 silence
+
+d5 $ slow 2 $ s "monsterb:6"
+  # gain "0.7"
+  # speed ((+0.6).(/2) <$> slow 4 sinewave1)
+
+d5 $ striate 4 $ slow 2 $ s "monsterb:6"
+  # gain "0.7"
+  # speed ((+0.6).(/2) <$> slow 4 sinewave1)
+
+d1 $ overlay (s "[hh*8 [hh*4 ho]]/2") $
+  every 8 (density 2) $
+  jux (iter 4) . every 3 rev $
+  overlay (pn'bd1) $ pn'sn1
+
+mapM_ ($ silence) [d1,d4]
+d5 silence
+
+{-
+[2]
+-}
+
+d8 $ slow (5%4) $ spread density [1,5%4] $ sound "[qlatibro:1 qlatibro]*2"
+  # vowel "e"
+
+d7 $ sound "casio*2 ~"
+d1 $ s "[hh*8 [hh*4 ho]]/2"
+
+d5 $ striate 4 $ slow 2 $ s "monsterb:6"
+  # gain "0.7"
+  # speed ((+0.6).(/2) <$> slow 4 sinewave1)
+
+d5 $ spread density [1,2] $ striate 4 $ slow 2 $ sound "monsterb:6"
+  # gain "0.7"
+  # speed ((+0.6).(/2) <$> slow 4 sinewave1)
+
+d6 $ slow 2 $ sound "bass*2 bass*2 bass*3 bass*3"
+
+d1 $ overlay (pn'sn1) $
+  s "[hh*8 [hh*4 ho]]/2"
+
+d6 $ slow 2 $ sound "bass*2 bass*2 bass*3 bass*3"
+  # speed ((+1) <$> density 2.4 sinewave1)
+
+d1 $ overlay (s "bd*2") $
+  overlay (pn'sn1) $
+  s "[hh*8 [hh*4 ho]]/2"
+
+d3 $ spread density [1,2] $
+  jux (iter 8) $ pn'qs1 2
+  |+| speed ((+0.7).(/2) <$> slow 3.2 triwave1)
+
+d6 $ slow (5%4) . slow 2 $ sound "bass*2 bass*2 bass*3 bass*3 ~"
+  # speed ((+1) <$> density 2.4 sinewave1)
+
+d1 $ overlay (s "house*2") $
+  overlay (pn'sn1) $
+  s "[hh*8 [hh*4 ho]]/2"
+
+d3 $ spread density [1,1,2,0.5] $
+  jux (iter 8) $ pn'qs1 2
+  |+| speed ((+0.7).(/2) <$> slow 3.2 triwave1)
+
+d1 silence
+
+d1 $ overlay (s "house(3,8)") $
+  overlay (pn'sn1) $
+  s "[hh*8 [hh*4 ho]]/2"
+
+d3 $ spread density [1,1,0.5,2] $
+  jux (iter 8) $ pn'qs1 2
+  |+| speed ((+0.7).(/2) <$> slow 3.2 triwave1)
+
+d4 $ slow 4 $ s "jungbass:2 jungbass:4"
+  |+| pan (slow 2 sinewave1)
+  |+| speed "1.2"
+
+d6 $ slow (5%4) . slow 2 $ sound "bass*2 bass*2 bass*3 bass*3"
+  # speed ((+1) <$> density 2.4 sinewave1)
+
+mapM_ ($ silence) [d3,d5]
+
+d7 $ spread density [1,4%3] $ sound "casio*2 ~"
+
+d1 $ overlay (every 4 (brak . density 2) $ s "house(3,8)") $
+  overlay (pn'sn1) $
+  s "[hh*8 [hh*4 ho]]/2"
+
+d7 $ jux (slow (4%3)) $ spread density [1,4%3] $ sound "casio*2 ~"
+
+mapM_ ($ silence) [d7,d8]
+
+d5 $ spread density [1,2] $ striate 4 $ slow 2 $ sound "monsterb:6"
+  # gain "0.7"
+  # speed ((+0.6).(/2) <$> slow 4 sinewave1)
+
+d9 $ slow 3 $ sound "baa"
+  |+| vowel "e"
+
+mapM_ ($ silence) [d2,d3,d4,d5,d9]
+
+solo $ d1 $ stack [
+  jux (iter 4 . rev) $ slow 2 $ sound "~ [~ sn:8] ~ [sn:8 ~] ~ ~ sn:8 ~",
+  slow 2 $ sound "hh*8 [hh*4 ho]"
+]
+
+{-
+[3]
+-}
+
+d1 $ density 2 . density (4%3) $ sound "sn:2 hh hh"
+
+d1 $ overlay (s "house*2") $
+  density 2 . density (4%3) $ sound "sn:2 hh hh"
+
+d1 $ overlay (s "house*2") $
+  every 4 (density 2 . brak) $ density 2 . density (4%3) $ sound "sn:2 hh hh"
+
+d1 $ overlay (s "house*2") $
+  every 4 (density 2 . brak) $
+  density 2 . density (4%3) $ sound "sn:2 hh rm"
+
+d8 $ slow 4 $ sound "armora:5"
+
+d8 $ every 8 (|+| speed "2") $ slow 4 $ sound "armora:5"
+
+d8 $ every 2 (density 3) $ every 8 (|+| speed "2") $ slow 4 $ sound "armora:5"
+  |+| shape ((/1.5) <$> slow 4 sinewave1)
+
+d5 $ striate 4 $ slow 2 $ s "monsterb:6"
+  # gain "0.7"
+  # speed ((+0.6).(/2) <$> slow 4 sinewave1)
+
+d3 $ pn'qs1 2
+d3 $ jux (iter 8) $ pn'qs1 2
+
+d3 $ jux (iter 8) $ pn'qs1 2
+  |+| speed ((+0.7).(/2) <$> slow 3.2 triwave1)
+
+d3 $ spread density [1,2] $
+  jux (iter 8) $ pn'qs1 2
+  |+| speed ((+0.7).(/2) <$> slow 3.2 triwave1)
+
+d1 $ overlay (s "house*2") $
+  every 4 (density 2 . brak) $
+  density 2 . density (4%3) $ sound (samples "sn:2 hh rm" (slow 5 "0 1"))
+
+d6 $ slow (5%4) . slow 2 $ sound "bass*2 bass*2 bass*3 bass*3 ~"
+  # speed ((+1) <$> density 2.4 sinewave1)
+
+d1 $ overlay (every 4 (density 3) $ s "house*2") $
+  every 4 (density 2 . brak) $
+  density 2 . density (4%3) $ sound "sn:2 hh hh"
+
+d4 $ slow 4 $ s "jungbass:2 jungbass:4"
+  |+| pan (slow 2 sinewave1)
+  |+| speed "1.2"
+
+bps ((117*1.5)/60) -- gradually 1.1->1.5
+
+d2 $ jux (slow 1.1) $ slow 2.5 . striate 6 $ sound "wobble"
+
+d9 $ slow 3 $ sound "baa"
+  |+| vowel "e"
+
+hush
