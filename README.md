@@ -2,6 +2,8 @@
 
 Originally recorded @ home in Elephant & Castle, 5th April 2014.
 
+Released on [Fwonk*](http://fwonk.co.uk) as [FW132](http://fwonk.co.uk/132/).
+
 ## Recordings
 
 - [Pig's Nose EP on Bandcamp](http://anny.audio/album/pigs-nose-ep)
