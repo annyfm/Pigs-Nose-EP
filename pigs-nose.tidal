@@ -41,7 +41,7 @@ let d'drum = d1
 let pn'hointro = s "[~ [~ ho] ~ ho ~ ~ ho ~]/2"
 
 -- drums pretty much all the way thru
-let pn'sn = s "[~ [~ sn:1] ~ sn:1 ~ ~ sn:1 ~]/2"
+let pn'sn = sound "[~ [~ sn:1] ~ sn:1 ~ ~ sn:1 ~]/2"
 let pn'bd = s "[bd [~ ~ ~ bd] bd*2 ~]/2"
 let pn'hh = s "[hh*8 [hh*4 ho]]/2"
 
@@ -133,7 +133,7 @@ d'drum $ cf $
   every 3 rev $
   overlay (pn'bd) $ pn'sn
 
-d'jbass $ slow 8 $ ((1%32) <~) $ s "jungbass jungbass:1"
+d'jbass $ slow 8 $ ((1%32) <~) $ sound "jungbass jungbass:1"
   # pan (slow 2 sinewave1)
   # speed "1.2"
 
@@ -143,7 +143,7 @@ d'drum $ cf $
   overlay (pn'bd) $ pn'sn
 
 -- start tailing off
-d'ql $ slow 2 $ s "[qlatibro:1 qlatibro]*2"
+d'ql $ slow 2 $ sound "[qlatibro:1 qlatibro]*2"
 
 d'drum $ cf $
   overlay (pn'hh) $
@@ -180,7 +180,7 @@ let pn'bass4 = s "bass*2 bass*2 bass*3 bass*3"
 let pn'bass5 = s "bass*2 bass*2 bass*3 bass*3 ~"
 
 d'ql $ slow (10%4) $ spread density [1,5%4] $
-  s "[qlatibro:1 qlatibro]*2"
+  sound "[qlatibro:1 qlatibro]*2"
   # vowel "e"
 
 -- yknow this is a pretty neat sample
@@ -237,7 +237,7 @@ d'qs $ cf $
   jux (iter 8) $ pn'qs 2
   # speed ((+0.7).(/2) <$> slow 3.2 triwave1)
 
-d'jbass $ slow 8 $ s "jungbass jungbass:1"
+d'jbass $ slow 8 $ sound "jungbass jungbass:1"
   # pan (slow 2 sinewave1)
   # speed "1.2"
 
@@ -282,21 +282,21 @@ solo $ d'drum $ cf $
 
 -- drum intro
 d'drum $ cf $
-  density (8%3) $ s "sn:0 hh hh"
+  density (8%3) $ sound "sn:0 hh hh"
 
 d'drum $ cf $
   overlay (s "house*2") $
-  density (8%3) $ s "sn:0 hh hh"
-
-d'drum $ cf $
-  overlay (s "house*2") $
-  every 4 (density 2 . brak) $
-  density (8%3) $ s "sn:0 hh hh"
+  density (8%3) $ sound "sn:0 hh hh"
 
 d'drum $ cf $
   overlay (s "house*2") $
   every 4 (density 2 . brak) $
-  density (8%3) $ s "sn:0 hh rm"
+  density (8%3) $ sound "sn:0 hh hh"
+
+d'drum $ cf $
+  overlay (s "house*2") $
+  every 4 (density 2 . brak) $
+  density (8%3) $ sound "sn:0 hh rm"
 
 -- weird low
 d'arm $ cf $
@@ -339,7 +339,7 @@ d'qs $ cf $
 d'drum $ cf $
   overlay (s "house*2") $
   every 4 (density 2 . brak) $
-  density (8%3) $ (s "sn:0 hh rm" # n "[0 1]/5")
+  density (8%3) $ (sound "sn:0 hh rm" # n "[0 1]/5")
 
 -- bring back 5/4 bass
 d'bass $ slow 5 $ pn'bass5
@@ -348,9 +348,9 @@ d'bass $ slow 5 $ pn'bass5
 d'drum $ cf $
   overlay (every 4 (density 3) $ s "house*2") $
   every 4 (density 2 . brak) $
-  density (8%3) $ (s "sn:0 hh rm" # n "[0 1]/5")
+  density (8%3) $ (sound "sn:0 hh rm" # n "[0 1]/5")
 
-d'jbass $ slow 8 $ s "jungbass jungbass:1"
+d'jbass $ slow 8 $ sound "jungbass jungbass:1"
   # pan (slow 2 sinewave1)
   # speed "1.2"
 
