@@ -1,27 +1,18 @@
 {-
-anny fm: pig's nose ep
-originally recorded @ home, elephant & castle, 5th april 2014
-released on fwonk*: fwonk.co.uk/132/
-  _____
- /    /
-/____/
-anny.audio/album/pigs-nose-ep
-      __
-  c|||  o_
-c||||| ___o
-soundcloud.com/anny-fm/sets/pigs-nose-ep
+Anny FM: Pig's Nose EP
+anny.audio
+
+Current version: 1.0.0
+Compatibility: Tidal Cycles 1.0-dev + SuperDirt 1.0-dev + SuperCollider 3.8
+License: CC-BY-SA https://creativecommons.org/licenses/by-sa/4.0/
+
+See README.md for more information
 -}
 
-cps (117/60)
-
--- multi-silence
-let msil = mapM_ ($ silence)
-
--- shortfix for bps->cps
-let cf = slow 2
-
--- channel map
-let d'drum = d1
+let bpm b = cps (b/60)
+    msil = mapM_ ($ silence)
+    cf = slow 2
+    d'drum = d1
     d'print = d2
     d'wobb = d2
     d'qs = d3
@@ -33,337 +24,235 @@ let d'drum = d1
     d'arm = d8
     d'baa = d9
 
+bpm 117
+
 {-
-[1]
+@pn1
 -}
 
--- intro hat
-let pn'hointro = s "[~ [~ ho] ~ ho ~ ~ ho ~]/2"
+-- @pn1print
+let p = s "print" -- (3) "{print, wobble}" -- (4) "wobble"
+  in d'print $ cf $
+     -- jux (slow 1.1) $ -- (2)
+     slow 2.5 . striate 6 $ p
+     -- # vowel (slow 3 "a e i") -- (1)
 
--- drums pretty much all the way thru
-let pn'sn = sound "[~ [~ sn:1] ~ sn:1 ~ ~ sn:1 ~]/2"
-let pn'bd = s "[bd [~ ~ ~ bd] bd*2 ~]/2"
-let pn'hh = s "[hh*8 [hh*4 ho]]/2"
+-- pn1print @ 1
 
--- qspace (= space but quieter)
-let pn'qs sl = slow sl . striate 4 $ s "qspace"
-
--- off tempo intro
-d'print $ cf $ slow 2.5 . striate 6 $ s "print"
-
-d'print $ cf $ slow 2.5 . striate 6 $ s "print"
-  # vowel (slow 3 "a e i")
-
-d'qs $ cf $ pn'qs 4
-d'qs $ cf $ pn'qs 2
-
-d'drum $ cf $ pn'hointro
-
-d'print $ cf $
-  jux (slow 1.1) $
-  slow 2.5 . striate 6 $ s "print"
-  # vowel (slow 3 "a e i")
-
-d'qs $ cf $ jux (iter 8) $ pn'qs 2
-
-d'drum $ cf $ pn'sn
-
-d'qs $ cf $ jux (iter 8) $ pn'qs 2
-  # speed ((+0.7).(/2) <$> slow 3.2 triwave1)
-
-d'print $ cf $
-  jux (slow 1.1) $
-  slow 2.5 . striate 6 $ s "{print, wobble}"
-  # vowel (slow 3 "a e i")
-
-d'drum $ cf $ overlay (slow 2 $ s "bd") $ pn'sn
-
--- good qspace
+-- @pn1qs
 d'qs $ cf $
-  spread density [1,2] $
-  jux (iter 8) $ pn'qs 2
-  # speed ((+0.7).(/2) <$> slow 3.2 triwave1)
+  -- fastspread density [1,2] $ -- (4) -- (5) [1,1,2,0.5] -- (6) [1,1,0.5,2]
+  -- jux (iter 8) $ -- (2)
+  slow 4 . striate 4 $ -- (1) 2
+  s "qspace"
+  -- # speed (scale 0.7 1.2 $ slow 3.2 triwave1) -- (3)
 
--- drums r srs now
-d'drum $ cf $ overlay (pn'bd) $ pn'sn
+-- pn1qs @ 1
 
-d'print $ cf $
-  jux (slow 1.1) $
-  slow 2.5 . striate 6 $ s "wobble"
+d'drum $ cf $ s "[~ [~ ho] ~ ho ~ ~ ho ~]/2"
 
--- pushy qspace
-d'qs $ cf $
-  spread density [1,1,2,0.5] $
-  jux (iter 8) $ pn'qs 2
-  # speed ((+0.7).(/2) <$> slow 3.2 triwave1)
+-- pn1print @ 2
+-- pn1qs @ 2
 
+d'drum $ cf $ s "[~ [~ sn:1] ~ sn:1 ~ ~ sn:1 ~]/2"
+
+-- pn1qs @ 3
+-- pn1print @ 3
+
+d'drum $ cf $ stack [
+  s "bd/2",
+  s "[~ [~ sn:1] ~ sn:1 ~ ~ sn:1 ~]/2"
+  ]
+
+-- pn1qs @ 4
+
+-- @pn1drum
 d'drum $ cf $
-  every 3 rev $
-  overlay (pn'bd) $ pn'sn
+  -- overlay (s "[hh*8 [hh*4 ho]]/2") $ -- (5)
+  -- every 8 (density 2) $ -- (3)
+  -- jux (iter 4) . -- (2)
+  -- jux (density 2 . iter 4) . -- (4) replace (2)(3)
+  -- every 3 rev $ -- (1)
+  stack [
+    s "[bd [~ ~ ~ bd] bd*2 ~]/2",
+    s "[~ [~ sn:1] ~ sn:1 ~ ~ sn:1 ~]/2"
+    ]
 
-d'drum $ cf $
-  jux (iter 4) . every 3 rev $
-  overlay (pn'bd) $ pn'sn
+-- pn1print @ 4
 
-d'drum $ cf $
-  every 8 (density 2) $
-  jux (iter 4) . every 3 rev $
-  overlay (pn'bd) $ pn'sn
+-- pn1qs @ 5
 
-d'drum $ cf $
-  jux (density 2 . iter 4) . every 3 rev $
-  overlay (pn'bd) $ pn'sn
+-- pn1drum @ 1
+-- pn1drum @ 2
+-- pn1drum @ 3
+-- pn1drum @ 4
 
--- chiller qspace
-d'qs $ cf $
-  spread density [1,1,0.5,2] $
-  jux (iter 8) $ pn'qs 2
-  # speed ((+0.7).(/2) <$> slow 3.2 triwave1)
+-- pn1qs @ 6
 
 d'print silence
 
-d'drum $ cf $ overlay (pn'bd) $ pn'sn
+-- pn1drum @ 0
+-- pn1drum @ 5
+-- pn1drum @ 5 w/ 1
 
-d'drum $ cf $
-  overlay (pn'hh) $
-  overlay (pn'bd) $ pn'sn
-
-d'drum $ cf $
-  overlay (pn'hh) $
-  every 3 rev $
-  overlay (pn'bd) $ pn'sn
-
-d'jbass $ slow 8 $ ((1%32) <~) $ sound "jungbass jungbass:1"
+-- @pn1jbass
+d'jbass $ slow 8 $
+  ((1/32) <~) $ -- (1) remove
+  s "jungbass jungbass:1"
   # pan (slow 2 sinewave1)
-  # speed "1.2"
+  # speed 1.2
 
-d'drum $ cf $
-  overlay (pn'hh) $
-  jux (iter 4) . every 3 rev $
-  overlay (pn'bd) $ pn'sn
+-- pn1drum @ 5 w/ 1,2
 
--- start tailing off
-d'ql $ slow 2 $ sound "[qlatibro:1 qlatibro]*2"
-
-d'drum $ cf $
-  overlay (pn'hh) $
-  jux (iter 4) . every 3 rev $
-  overlay (pn'bd) $ pn'sn
+-- (pn2ql @ 0)
+d'ql $ slow 2 $ s "[qlatibro:1 qlatibro]*2"
 
 d'qs silence
 
 d'mons $ cf $
+  -- striate 4 $ -- (1)
   slow 2 $ s "monsterb"
-  # gain "0.7"
-  # speed ((+0.6).(/2) <$> slow 4 sinewave1)
+  # gain 0.7
+  # speed (scale 0.6 1.1 $ slow 4 sinewave1)
 
-d'mons $ cf $
-  striate 4 $ slow 2 $ s "monsterb"
-  # gain "0.7"
-  # speed ((+0.6).(/2) <$> slow 4 sinewave1)
+-- pn1drum @ 5 w/ 1,2,3
 
-d'drum $ cf $
-  overlay (pn'hh) $
-  every 8 (density 2) $
-  jux (iter 4) . every 3 rev $
-  overlay (pn'bd) $ pn'sn
-
--- calm
 msil [d'drum, d'jbass]
 d'mons silence
 
 {-
-[2]
+@pn2
 -}
 
-let pn'bass4 = s "bass*2 bass*2 bass*3 bass*3"
-let pn'bass5 = s "bass*2 bass*2 bass*3 bass*3 ~"
+-- @pn2ql
+d'ql $
+  -- slow 2 $ -- (0)
+  slow (10/4) $ fastspread density [1,5/4] $ -- (0) remove
+  s "[qlatibro:1 qlatibro]*2"
+  # vowel "e" -- (0) remove
 
-d'ql $ slow (10%4) $ spread density [1,5%4] $
-  sound "[qlatibro:1 qlatibro]*2"
-  # vowel "e"
+-- @pn2casio
+d'casio $ cf $
+  -- jux (slow (4/3)) $ -- (2)
+  -- fastspread density [1,4/3] $ -- (1)
+  s "casio*2 ~"
 
--- yknow this is a pretty neat sample
-d'casio $ cf $ s "casio*2 ~"
-d'drum $ cf $ pn'hh
+d'drum $ cf $ s "[hh*8 [hh*4 ho]]/2"
 
+-- @pn2mons
 d'mons $ cf $
+  -- fastspread density [1,2] $ -- (1)
   striate 4 $ slow 2 $ s "monsterb"
-  # gain "0.7"
-  # speed ((+0.6).(/2) <$> slow 4 sinewave1)
+  # gain 0.7
+  # speed (scale 0.6 1.1 $ slow 4 sinewave1)
 
-d'mons $ cf $
-  spread density [1,2] $
-  striate 4 $ slow 2 $ s "monsterb"
-  # gain "0.7"
-  # speed ((+0.6).(/2) <$> slow 4 sinewave1)
+-- pn2mons @ 1
 
--- real bass at last
-d'bass $ slow 4 $ pn'bass4
+-- @pn2bass
+let p = slow 4 $ s "bass*2 bass*2 bass*3 bass*3" -- (3) slow 5
+    -- p = slow 5 $ s "bass*2 bass*2 bass*3 bass*3 ~" -- (2)
+  in d'bass $ p
+     -- # speed (scale 1 2 $ density 2.4 sinewave1) -- (1)
 
-d'drum $ cf $ overlay (pn'sn) $ pn'hh
+d'drum $ cf $ stack [
+  s "[hh*8 [hh*4 ho]]/2",
+  s "[~ [~ sn:1] ~ sn:1 ~ ~ sn:1 ~]/2"
+  ]
 
-d'bass $ cf $ slow 2 $ pn'bass4
-  # speed ((+1) <$> density 2.4 sinewave1)
+-- pn2bass @ 1
 
-d'drum $ cf $ overlay (pn'sn) $ overlay (pn'hh) $
-  s "bd*2"
+-- @pn2drum
+d'drum $ cf $ stack [
+  s "[hh*8 [hh*4 ho]]/2",
+  s "[~ [~ sn:1] ~ sn:1 ~ ~ sn:1 ~]/2",
+  -- every 4 (brak . density 2) $ -- (3)
+  s "bd*2" -- (1) "house*2" -- (2) "house(3,8)"
+  ]
 
-d'qs $ cf $
-  spread density [1,2] $
-  jux (iter 8) $ pn'qs 2
-  # speed ((+0.7).(/2) <$> slow 3.2 triwave1)
+-- pn1qs @ 4
+-- pn2bass @ 2
 
-d'bass $ slow 5 $ pn'bass5
-  # speed ((+1) <$> density 2.4 sinewave1)
+-- pn2drum @ 1
 
--- real kick drum at last!
-d'drum $ cf $ overlay (pn'sn) $ overlay (pn'hh) $
-  s "house*2"
+-- pn1qs @ 5
 
-d'qs $ cf $
-  spread density [1,1,2,0.5] $
-  jux (iter 8) $ pn'qs 2
-  # speed ((+0.7).(/2) <$> slow 3.2 triwave1)
-
--- quickly
 d'drum silence
 
-d'drum $ cf $ overlay (pn'sn) $ overlay (pn'hh) $
-  s "house(3,8)"
+-- pn2drum @ 2
 
-d'qs $ cf $
-  spread density [1,1,0.5,2] $
-  jux (iter 8) $ pn'qs 2
-  # speed ((+0.7).(/2) <$> slow 3.2 triwave1)
+-- pn1qs @ 6
+-- pn1jbass @ 1
 
-d'jbass $ slow 8 $ sound "jungbass jungbass:1"
-  # pan (slow 2 sinewave1)
-  # speed "1.2"
-
-d'bass $ slow 5 $ pn'bass4
-  # speed ((+1) <$> density 2.4 sinewave1)
+-- pn2bass @ 3
 
 msil [d'qs, d'mons]
 
--- mess with casio a bit then get rid. a transition
-d'casio $ cf $
-  spread density [1,4%3] $ s "casio*2 ~"
-
-d'drum $ cf $ overlay (pn'sn) $ overlay (pn'hh) $
-  every 4 (brak . density 2) $ s "house(3,8)"
-
-d'casio $ cf $
-  jux (slow (4%3)) $
-  spread density [1,4%3] $ s "casio*2 ~"
+-- pn2casio @ 1
+-- pn2drum @ 3
+-- pn2casio @ 2
 
 msil [d'casio, d'ql]
 
-d'mons $ cf $
-  spread density [1,2] $
-  striate 4 $ slow 2 $ s "monsterb"
-  # gain "0.7"
-  # speed ((+0.6).(/2) <$> slow 4 sinewave1)
+-- pn2mons @ 1
 
--- sometimes i regret putting a sheep in this song
+-- @pn2sheep
 d'baa $ slow 6 $ s "baa"
   # vowel "e"
 
 msil [d'print, d'qs, d'jbass, d'mons, d'baa]
 
--- nice
 solo $ d'drum $ cf $
-  overlay pn'hh $
-  jux (iter 4 . rev) $ pn'sn
+  overlay (s "[hh*8 [hh*4 ho]]/2") $
+  jux (iter 4 . rev) $ s "[~ [~ sn:1] ~ sn:1 ~ ~ sn:1 ~]/2"
 
 {-
-[3]
+@pn3
 -}
 
--- drum intro
+-- @pn3drum
 d'drum $ cf $
-  density (8%3) $ sound "sn:0 hh hh"
+  overlay (
+    -- every 4 (density 3) $ -- (5)
+    s "house*2"
+    ) $ -- (1)
+  -- every 4 (density 2 . brak) $ -- (2)
+  density (8/3) $
+  s "sn:0 hh hh" -- (3) "sn:0 hh rm"
+  -- # n "[0 1]/5" -- (4)
 
-d'drum $ cf $
-  overlay (s "house*2") $
-  density (8%3) $ sound "sn:0 hh hh"
+-- pn3drum @ 1
+-- pn3drum @ 2
+-- pn3drum @ 3
 
-d'drum $ cf $
-  overlay (s "house*2") $
-  every 4 (density 2 . brak) $
-  density (8%3) $ sound "sn:0 hh hh"
-
-d'drum $ cf $
-  overlay (s "house*2") $
-  every 4 (density 2 . brak) $
-  density (8%3) $ sound "sn:0 hh rm"
-
--- weird low
-d'arm $ cf $
-  slow 4 $ s "armora"
+-- @pn3arm
 
 d'arm $ cf $
-  every 8 (# speed "2") $
+  -- every 2 (density 3) $ -- (2)
+  -- every 8 (# speed "2") $ -- (1)
   slow 4 $ s "armora"
+  -- # shape (scale 0 (2/3) $ slow 4 sinewave1) -- (3)
 
-d'arm $ cf $
-  every 2 (density 3) $
-  every 8 (# speed "2") $
-  slow 4 $ s "armora"
+-- pn3arm @ 1
+-- pn3arm @ 2
+-- pn3arm @ 3
 
-d'arm $ cf $
-  every 2 (density 3) $
-  every 8 (# speed "2") $
-  slow 4 $ s "armora"
-  # shape ((/1.5) <$> slow 4 sinewave1)
+-- pn2mons @ 0
 
--- bring monster back
-d'mons $ cf $
-  striate 4 $ slow 2 $ s "monsterb"
-  # gain "0.7"
-  # speed ((+0.6).(/2) <$> slow 4 sinewave1)
+-- pn1qs @ 1
+-- pn1qs @ 2
+-- pn1qs @ 3
+-- pn1qs @ 4
 
--- and qspace
-d'qs $ cf $ pn'qs 2
-d'qs $ cf $ jux (iter 8) $ pn'qs 2
+-- pn3drum @ 4
 
-d'qs $ cf $
-  jux (iter 8) $ pn'qs 2
-  # speed ((+0.7).(/2) <$> slow 3.2 triwave1)
+-- pn2bass @ 2
 
-d'qs $ cf $
-  spread density [1,2] $
-  jux (iter 8) $ pn'qs 2
-  # speed ((+0.7).(/2) <$> slow 3.2 triwave1)
+-- pn3drum @ 5
+-- pn1jbass @ 1
 
-d'drum $ cf $
-  overlay (s "house*2") $
-  every 4 (density 2 . brak) $
-  density (8%3) $ (sound "sn:0 hh rm" # n "[0 1]/5")
+bpm (117 * 1.1) -- gradually to 1.5
 
--- bring back 5/4 bass
-d'bass $ slow 5 $ pn'bass5
-  # speed ((+1) <$> density 2.4 sinewave1)
+-- pn1print @ 4
+-- pn2sheep
 
-d'drum $ cf $
-  overlay (every 4 (density 3) $ s "house*2") $
-  every 4 (density 2 . brak) $
-  density (8%3) $ (sound "sn:0 hh rm" # n "[0 1]/5")
-
-d'jbass $ slow 8 $ sound "jungbass jungbass:1"
-  # pan (slow 2 sinewave1)
-  # speed "1.2"
-
--- gradually 1.1->1.5
-cps ((117*1.5)/60)
-
-d'wobb $ cf $
-  jux (slow 1.1) $
-  slow 2.5 . striate 6 $ s "wobble"
-
--- still don't know why i put a fuckin sheep in here
-d'baa $ slow 6 $ s "baa"
-  # vowel "e"
-
--- all at once
 hush
