@@ -28,6 +28,7 @@ bpm 117
 
 {-
 @pn1
+Decant
 -}
 
 -- @pn1print
@@ -122,6 +123,7 @@ d'mons silence
 
 {-
 @pn2
+Raise
 -}
 
 -- @pn2ql
@@ -207,6 +209,7 @@ solo $ d'drum $ cf $
 
 {-
 @pn3
+Savour
 -}
 
 -- @pn3drum
