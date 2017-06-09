@@ -195,7 +195,7 @@ msil [d'casio, d'ql]
 
 -- pn2mons @ 1
 
--- @pn2sheep
+-- @pn2baa
 d'baa $ slow 6 $ s "baa"
   # vowel "e"
 
@@ -211,10 +211,10 @@ solo $ d'drum $ cf $
 
 -- @pn3drum
 d'drum $ cf $
-  overlay (
+  {- overlay ( -- (1)
     -- every 4 (density 3) $ -- (5)
     s "house*2"
-    ) $ -- (1)
+    ) $ -- -}
   -- every 4 (density 2 . brak) $ -- (2)
   density (8/3) $
   s "sn:0 hh hh" -- (3) "sn:0 hh rm"
