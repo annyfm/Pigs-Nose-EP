@@ -8,4 +8,4 @@
 d'casio $ cf $
   -- jux (slow (4/3)) $ -- (2)
   -- fastspread density [1,4/3] $ -- (1)
-  s "casio*2 ~"
+  s "${1:casio}*2 ~"

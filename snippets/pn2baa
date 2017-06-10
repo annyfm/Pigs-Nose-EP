@@ -5,5 +5,5 @@
 # expand-env: (yas-indent-line fixed)
 # --
 -- @pn2baa
-d'baa $ slow 6 $ s "baa"
+d'baa $ slow 6 $ s "${1:baa}"
   # vowel "e"

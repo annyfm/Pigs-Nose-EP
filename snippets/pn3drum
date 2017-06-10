@@ -9,9 +9,9 @@ d'drum $ cf $
   {- -- (1)
   overlay (
     -- every 4 (density 3) $ -- (5)
-    s "house*2"
+    s "${4:house}*2"
     ) $ -- -}
   -- every 4 (density 2 . brak) $ -- (2)
   density (8/3) $
-  s "sn:0 hh hh" -- (3) "sn:0 hh rm"
+  s "${1:sn:0} ${2:hh} $2" -- (3) "$1:0 $2 ${3:rm}"
   -- # n "[0 1]/5" -- (4)

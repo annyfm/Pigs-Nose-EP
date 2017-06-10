@@ -6,12 +6,12 @@
 # --
 -- @pn1drum
 d'drum $ cf $
-  -- overlay (s "[hh*8 [hh*4 ho]]/2") $ -- (5)
+  -- overlay (s "[${3:hh}*8 [$3*4 ${4:ho}]]/2") $ -- (5)
   -- every 8 (density 2) $ -- (3)
   -- jux (iter 4) . -- (2)
   -- jux (density 2 . iter 4) . -- (4) replace (2)(3)
   -- every 3 rev $ -- (1)
   stack [
-    s "[bd [~ ~ ~ bd] bd*2 ~]/2",
-    s "[~ [~ sn:1] ~ sn:1 ~ ~ sn:1 ~]/2"
+    s "[${1:bd} [~ ~ ~ $1] $1*2 ~]/2",
+    s "[~ [~ ${2:sn:1}] ~ $2 ~ ~ $2 ~]/2"
     ]

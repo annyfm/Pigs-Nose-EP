@@ -7,6 +7,6 @@
 -- @pn1mons
 d'mons $ cf $
   -- striate 4 $ -- (1)
-  slow 2 $ s "monsterb"
+  slow 2 $ s "${1:monsterb}"
   # gain 0.7
   # speed (scale 0.6 1.1 $ slow 4 sinewave1)

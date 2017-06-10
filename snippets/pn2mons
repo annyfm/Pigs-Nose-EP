@@ -7,6 +7,6 @@
 -- @pn2mons
 d'mons $ cf $
   -- fastspread density [1,2] $ -- (1)
-  striate 4 $ slow 2 $ s "monsterb"
+  striate 4 $ slow 2 $ s "${1:monsterb}"
   # gain 0.7
   # speed (scale 0.6 1.1 $ slow 4 sinewave1)

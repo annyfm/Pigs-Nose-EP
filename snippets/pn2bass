@@ -5,7 +5,7 @@
 # expand-env: (yas-indent-line fixed)
 # --
 -- @pn2bass
-let p = slow 4 $ s "bass*2 bass*2 bass*3 bass*3" -- (3) slow 5
-    -- p = slow 5 $ s "bass*2 bass*2 bass*3 bass*3 ~" -- (2)
+let p = slow 4 $ s "${1:bass}*2 $1*2 $1*3 $1*3" -- (3) slow 5
+    -- p = slow 5 $ s "$1*2 $1*2 $1*3 $1*3 ~" -- (2)
   in d'bass $ p
      -- # speed (scale 1 2 $ density 2.4 sinewave1) -- (1)

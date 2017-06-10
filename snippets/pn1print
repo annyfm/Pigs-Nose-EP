@@ -5,7 +5,7 @@
 # expand-env: (yas-indent-line fixed)
 # --
 -- @pn1print
-let p = s "print" -- (3) "{print, wobble}" -- (4) "wobble"
+let p = s "${1:print}" -- (3) "{$1, ${2:wobble}}" -- (4) "$2"
   in d'print $ cf $
      -- jux (slow 1.1) $ -- (2)
      slow 2.5 . striate 6 $ p

@@ -9,5 +9,5 @@ d'qs $ cf $
   -- fastspread density [1,2] $ -- (4) -- (5) [1,1,2,0.5] -- (6) [1,1,0.5,2]
   -- jux (iter 8) $ -- (2)
   slow 4 . striate 4 $ -- (1) 2
-  s "qspace"
+  s "${1:qspace}"
   -- # speed (scale 0.7 1.2 $ slow 3.2 triwave1) -- (3)
