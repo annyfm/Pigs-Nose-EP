@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: pn1jbass
+# group: pigsnose
+# key: pn1jbass
+# expand-env: (yas-indent-line fixed)
+# --
+-- @pn1jbass
+d'jbass $ slow 8 $
+  ((1/32) <~) $ -- (1) remove
+  s "jungbass jungbass:1"
+  # pan (slow 2 sinewave1)
+  # speed 1.2

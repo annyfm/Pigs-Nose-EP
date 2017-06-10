@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: pn2drumintro
+# group: pigsnose
+# key: pn2drumintro
+# expand-env: (yas-indent-line fixed)
+# --
+-- @pn2drumintro
+d'drum $ cf $ stack [
+  -- s "[~ [~ sn:1] ~ sn:1 ~ ~ sn:1 ~]/2", -- (1)
+  s "[hh*8 [hh*4 ho]]/2"
+  ]

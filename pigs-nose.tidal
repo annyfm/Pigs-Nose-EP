@@ -50,20 +50,22 @@ d'qs $ cf $
 
 -- pn1qs @ 1
 
-d'drum $ cf $ s "[~ [~ ho] ~ ho ~ ~ ho ~]/2"
+-- @pn1drumintro
+d'drum $ cf $ stack [
+  -- s "bd/2", -- (2)
+  s "[~ [~ ho] ~ ho ~ ~ ho ~]/2"
+  -- s "[~ [~ sn:1] ~ sn:1 ~ ~ sn:1 ~]/2" -- (1)
+  ]
 
 -- pn1print @ 2
 -- pn1qs @ 2
 
-d'drum $ cf $ s "[~ [~ sn:1] ~ sn:1 ~ ~ sn:1 ~]/2"
+-- pn1drumintro @ 1
 
 -- pn1qs @ 3
 -- pn1print @ 3
 
-d'drum $ cf $ stack [
-  s "bd/2",
-  s "[~ [~ sn:1] ~ sn:1 ~ ~ sn:1 ~]/2"
-  ]
+-- pn1drumintro @ 2
 
 -- pn1qs @ 4
 
@@ -110,12 +112,14 @@ d'ql $ slow 2 $ s "[qlatibro:1 qlatibro]*2"
 
 d'qs silence
 
+-- @pn1mons
 d'mons $ cf $
   -- striate 4 $ -- (1)
   slow 2 $ s "monsterb"
   # gain 0.7
   # speed (scale 0.6 1.1 $ slow 4 sinewave1)
 
+-- pn1mons @ 1
 -- pn1drum @ 5 w/ 1,2,3
 
 msil [d'drum, d'jbass]
@@ -139,6 +143,12 @@ d'casio $ cf $
   -- fastspread density [1,4/3] $ -- (1)
   s "casio*2 ~"
 
+-- @pn2drumintro
+d'drum $ cf $ stack [
+  -- s "[~ [~ sn:1] ~ sn:1 ~ ~ sn:1 ~]/2", -- (1)
+  s "[hh*8 [hh*4 ho]]/2"
+  ]
+
 d'drum $ cf $ s "[hh*8 [hh*4 ho]]/2"
 
 -- @pn2mons
@@ -156,11 +166,7 @@ let p = slow 4 $ s "bass*2 bass*2 bass*3 bass*3" -- (3) slow 5
   in d'bass $ p
      -- # speed (scale 1 2 $ density 2.4 sinewave1) -- (1)
 
-d'drum $ cf $ stack [
-  s "[hh*8 [hh*4 ho]]/2",
-  s "[~ [~ sn:1] ~ sn:1 ~ ~ sn:1 ~]/2"
-  ]
-
+-- pn2drumintro @ 1
 -- pn2bass @ 1
 
 -- @pn2drum
@@ -203,6 +209,7 @@ d'baa $ slow 6 $ s "baa"
 
 msil [d'print, d'qs, d'jbass, d'mons, d'baa]
 
+-- @pn2drumoutro
 solo $ d'drum $ cf $
   overlay (s "[hh*8 [hh*4 ho]]/2") $
   jux (iter 4 . rev) $ s "[~ [~ sn:1] ~ sn:1 ~ ~ sn:1 ~]/2"
@@ -214,7 +221,8 @@ Savour
 
 -- @pn3drum
 d'drum $ cf $
-  {- overlay ( -- (1)
+  {- -- (1)
+  overlay (
     -- every 4 (density 3) $ -- (5)
     s "house*2"
     ) $ -- -}
@@ -228,7 +236,6 @@ d'drum $ cf $
 -- pn3drum @ 3
 
 -- @pn3arm
-
 d'arm $ cf $
   -- every 2 (density 3) $ -- (2)
   -- every 8 (# speed "2") $ -- (1)

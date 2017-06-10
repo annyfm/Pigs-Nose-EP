@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: pn3arm
+# group: pigsnose
+# key: pn3arm
+# expand-env: (yas-indent-line fixed)
+# --
+-- @pn3arm
+d'arm $ cf $
+  -- every 2 (density 3) $ -- (2)
+  -- every 8 (# speed "2") $ -- (1)
+  slow 4 $ s "armora"
+  -- # shape (scale 0 (2/3) $ slow 4 sinewave1) -- (3)

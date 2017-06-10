@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: pn2ql
+# group: pigsnose
+# key: pn2ql
+# expand-env: (yas-indent-line fixed)
+# --
+-- @pn2ql
+d'ql $
+  -- slow 2 $ -- (0)
+  slow (10/4) $ fastspread density [1,5/4] $ -- (0) remove
+  s "[qlatibro:1 qlatibro]*2"
+  # vowel "e" -- (0) remove

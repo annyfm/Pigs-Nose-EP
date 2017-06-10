@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: pn1mons
+# group: pigsnose
+# key: pn1mons
+# expand-env: (yas-indent-line fixed)
+# --
+-- @pn1mons
+d'mons $ cf $
+  -- striate 4 $ -- (1)
+  slow 2 $ s "monsterb"
+  # gain 0.7
+  # speed (scale 0.6 1.1 $ slow 4 sinewave1)

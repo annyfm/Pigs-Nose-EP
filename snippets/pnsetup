@@ -1,0 +1,20 @@
+# -*- mode: snippet -*-
+# name: pnsetup
+# group: pigsnose
+# key: pnsetup
+# expand-env: (yas-indent-line fixed)
+# --
+let bpm b = cps (b/60)
+    msil = mapM_ ($ silence)
+    cf = slow 2
+    d'drum = d1
+    d'print = d2
+    d'wobb = d2
+    d'qs = d3
+    d'jbass = d4
+    d'mons = d5
+    d'bass = d6
+    d'casio = d7
+    d'ql = d8
+    d'arm = d8
+    d'baa = d9

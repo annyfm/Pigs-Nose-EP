@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: pn2drumoutro
+# group: pigsnose
+# key: pn2drumoutro
+# expand-env: (yas-indent-line fixed)
+# --
+-- @pn2drumoutro
+solo $ d'drum $ cf $
+  overlay (s "[hh*8 [hh*4 ho]]/2") $
+  jux (iter 4 . rev) $ s "[~ [~ sn:1] ~ sn:1 ~ ~ sn:1 ~]/2"

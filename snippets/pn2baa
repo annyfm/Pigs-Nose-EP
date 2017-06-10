@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: pn2baa
+# group: pigsnose
+# key: pn2baa
+# expand-env: (yas-indent-line fixed)
+# --
+-- @pn2baa
+d'baa $ slow 6 $ s "baa"
+  # vowel "e"

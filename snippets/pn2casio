@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: pn2casio
+# group: pigsnose
+# key: pn2casio
+# expand-env: (yas-indent-line fixed)
+# --
+-- @pn2casio
+d'casio $ cf $
+  -- jux (slow (4/3)) $ -- (2)
+  -- fastspread density [1,4/3] $ -- (1)
+  s "casio*2 ~"

@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: pigsnose
+# group: pigsnose
+# key: pigsnose
+# expand-env: (yas-indent-line fixed)
+# --
+pnsetup
+pn1print
+pn1qs
+pn1drumintro
+pn1drum
+pn1jbass
+pn2ql
+pn2casio
+pn2drumintro
+pn2mons
+pn2bass
+pn2drum
+pn2baa
+pn2drumoutro
+pn3drum
+pn3arm

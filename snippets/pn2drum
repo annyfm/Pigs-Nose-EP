@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: pn2drum
+# group: pigsnose
+# key: pn2drum
+# expand-env: (yas-indent-line fixed)
+# --
+-- @pn2drum
+d'drum $ cf $ stack [
+  s "[hh*8 [hh*4 ho]]/2",
+  s "[~ [~ sn:1] ~ sn:1 ~ ~ sn:1 ~]/2",
+  -- every 4 (brak . density 2) $ -- (3)
+  s "bd*2" -- (1) "house*2" -- (2) "house(3,8)"
+  ]
