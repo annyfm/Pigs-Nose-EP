@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: savour
+# group: pigsnose
+# key: savour
+# expand-env: (yas-indent-line fixed)
+# --
+pn3drum
+pn3arm
+pn2mons
+pn1qs
+pn2bass
+pn1jbass
+pn1print
+pn2sheep

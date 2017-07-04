@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: decant
+# group: pigsnose
+# key: decant
+# expand-env: (yas-indent-line fixed)
+# --
+pn1print
+pn1qs
+pn1drumintro
+pn1drum
+pn1jbass
+pn2ql
+pn1mons

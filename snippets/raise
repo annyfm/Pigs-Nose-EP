@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: raise
+# group: pigsnose
+# key: raise
+# expand-env: (yas-indent-line fixed)
+# --
+pn2ql
+pn2casio
+pn2drumintro
+pn2mons
+pn2bass
+pn2drum
+pn1qs
+pn1jbass
+pn2baa
+pn2drumoutro
